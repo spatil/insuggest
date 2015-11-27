@@ -53,7 +53,7 @@ module Insuggest
                 {
                   match: {
                     model_and_available_model: {
-                      query: query[1],
+                      query: "#{query[1]} #{query[2]}",
                       minimum_should_match: percent[1]
                     }
                   }

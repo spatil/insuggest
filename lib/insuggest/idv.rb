@@ -31,6 +31,10 @@ module Insuggest
                 payloads: true,
                 index_analyzer: "simple",
                 search_analyzer: "simple"
+              indexes :suggest_submodel, type: 'completion',
+                payloads: true,
+                index_analyzer: "simple",
+                search_analyzer: "simple"
             end
           end
         end
@@ -60,9 +64,9 @@ module Insuggest
                 },
                 {
                   match: {
-                    fuel_type: {
+                    submodel: {
                       query: query[2],
-                      minimum_should_match: '90%' 
+                      minimum_should_match: percent[2] 
                     }
                   }
                 },
