@@ -52,9 +52,17 @@ module Insuggest
                 },
                 {
                   match: {
-                    model_and_available_model: {
-                      query: "#{query[1]} #{query[2]}",
+                    model: {
+                      query: query[1],
                       minimum_should_match: percent[1]
+                    }
+                  }
+                },
+                {
+                  match: {
+                    available_model: {
+                      query: query[2],
+                      minimum_should_match: '95%' 
                     }
                   }
                 },

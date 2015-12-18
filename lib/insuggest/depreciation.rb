@@ -46,15 +46,23 @@ module Insuggest
                   match: {
                     make: {
                       query: query[0],
-                      minimum_should_match: '30%' 
+                      minimum_should_match: percent[0] 
                     }
                   }
                 },
                 {
                   match: {
                     model: {
-                      query: "#{query[1]} #{query[2]}",
-                      minimum_should_match: '40%' 
+                      query: query[1],
+                      minimum_should_match: percent[1]
+                    }
+                  }
+                },
+                {
+                  match: {
+                    submodel: {
+                      query: query[2], 
+                      minimum_should_match: percent[2]
                     }
                   }
                 }
