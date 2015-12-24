@@ -70,6 +70,14 @@ module Insuggest
                     }
                   }
                 },
+                {
+                  match: {
+                    fuel_type: {
+                      query: query[3],
+                      minimum_should_match: '100%' 
+                    }
+                  }
+                }
               ]
             }
           }

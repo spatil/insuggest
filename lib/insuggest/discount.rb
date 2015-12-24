@@ -66,6 +66,14 @@ module Insuggest
                     }
                   }
                 },
+                {
+                  match: {
+                    fuel_type: {
+                      query: query[3],
+                      minimum_should_match: '100%' 
+                    }
+                  }
+                },
                 {range: {from: {lte: age}}},
                 {range: {to: {gte: age}}}
               ]
