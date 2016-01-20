@@ -30,8 +30,8 @@ module Insuggest
           query: {
             bool: {
               must: [
-                { match: { make: query[:make] } },
-                { match: { model: query[:model] } },
+                { match: { make: query[:car_make] } },
+                { match: { model: query[:car_model] } },
               ]
             }
           }
