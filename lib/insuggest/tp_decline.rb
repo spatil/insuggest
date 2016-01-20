@@ -1,5 +1,5 @@
 module Insuggest
-  module TpVendor 
+  module TpDecline
     attr_reader :attributes
 
     def initialize(attributes={})
@@ -13,14 +13,14 @@ module Insuggest
     module ClassMethods
       
       def get_index_name
-        "tp_vendors"
+        "tp_declines"
       end
 
       def repository
         index_name = get_index_name
         Elasticsearch::Persistence::Repository.new do
           index index_name
-          type :tp_vendor
+          type :tp_decline
         end
       end
 
@@ -30,8 +30,8 @@ module Insuggest
           query: {
             bool: {
               must: [
-                { match: { category: query[:category] } },
-                { match: { sub_category: query[:sub_category] } },
+                { match: { make: query[:make] } },
+                { match: { model: query[:model] } },
               ]
             }
           }
