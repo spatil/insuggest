@@ -48,7 +48,7 @@ module Insuggest
               must: [
                 {
                   match: {
-                    vehicle_type: { query[4] }
+                    vehicle_type: query[4]
                   }
                 },
                 {
