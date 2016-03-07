@@ -1,5 +1,5 @@
 module Insuggest
-  module Idv 
+  module TpIdv 
     attr_reader :attributes
 
     def initialize(attributes={})
