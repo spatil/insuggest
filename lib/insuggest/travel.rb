@@ -24,14 +24,13 @@ module Insuggest
         end
       end
 
-      def search(days, cover, age, size=100)
+      def search(days, age, size=100)
         self.repository.search({
           size: size,
           query: {
             bool: {
               must: [
                 { match: { days: days } },
-                { match: { cover: cover } },
                 { range: { from: { lte: age } } },
                 { range: { to: { gte: age } } }
               ]
