@@ -41,59 +41,49 @@ module Insuggest
       end
 
       def search(query=[], size= 100, age=1, percent)
-        self.repository.search({
-          size: size,
-          query: {
-            bool: {
-              must: [
-                {
-                  match: {
-                    vehicle_type: query[4]
-                  }
-                },
-                {
-                  match: {
-                    vehicle_subtype: {
-                      query: query[5],
-                      minimum_should_match: '90%' 
-                    }
-                  }
-                },
-                {
-                  match: {
-                    make: {
-                      query: query[0],
-                      minimum_should_match: percent[0]
-                    }
-                  }
-                },
-                {
-                  match: {
-                    model: {
-                      query: query[1],
-                      minimum_should_match: percent[1]
-                    }
-                  }
-                },
-                {
-                  match: {
-                    submodel: {
-                      query: query[2],
-                      minimum_should_match: percent[2] 
-                    }
-                  }
-                },
-                {
-                  match: {
-                    fuel_type: {
-                      query: query[3],
-                      minimum_should_match: '100%' 
-                    }
-                  }
-                }
-              ]
+        conditions = [
+          {
+            match: {
+              vehicle_type: query[4]
+            }
+          },
+          {
+            match: {
+              make: {
+                query: query[0],
+                minimum_should_match: percent[0]
+              }
+            }
+          },
+          {
+            match: {
+              model: {
+                query: query[1],
+                minimum_should_match: percent[1]
+              }
+            }
+          },
+          {
+            match: {
+              submodel: {
+                query: query[2],
+                minimum_should_match: percent[2] 
+              }
+            }
+          },
+          {
+            match: {
+              fuel_type: {
+                query: query[3],
+                minimum_should_match: '100%' 
+              }
             }
           }
+        ]
+        conditions << { match: { vehicle_subtype: { query: query[5], minimum_should_match: '90%' } } } unless query[5].blank?
+        self.repository.search({
+          size: size,
+          query: { bool: { must: conditions } }
         })
       end
     end
