@@ -24,7 +24,7 @@ module Insuggest
         end
       end
 
-      def search(days, age, age_in, size=100)
+      def search(days, age, age_in="Year", size=100)
         self.repository.search({
           size: size,
           query: {
