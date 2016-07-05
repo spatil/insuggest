@@ -43,28 +43,13 @@ module Insuggest
             bool: {
               must: [
                 {
-                  match: {
-                    make: {
-                      query: query[0],
-                      minimum_should_match: percent[0] 
-                    }
-                  }
+                  match: { "make.raw" => query[0] }
                 },
                 {
-                  match: {
-                    model: {
-                      query: query[1],
-                      minimum_should_match: percent[1]
-                    }
-                  }
+                  match: { "model.raw" => query[1] }
                 },
                 {
-                  match: {
-                    submodel: {
-                      query: query[2], 
-                      minimum_should_match: percent[2]
-                    }
-                  }
+                  match: { "submodel.raw" => query[2] }
                 }
               ]
             }
