@@ -60,7 +60,7 @@ module Insuggest
                   match: {
                     fuel_type: {
                       query: query[3].split("/").join(" "),
-                      minimum_should_match: '100%' 
+                      minimum_should_match: '50%' 
                     }
                   }
                 },
